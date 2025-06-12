@@ -1,0 +1,4 @@
+[2025-06-12T10:47:59] ADD id=1 description="Купить хлеб" due=2025-06-10 tags=[food,home]
+[2025-06-12T10:54:21] DONE id=1
+[2025-06-12T10:56:31] REMOVE id=1
+[2025-06-12T10:59:21] EXPORT format=csv out=tasks.csv

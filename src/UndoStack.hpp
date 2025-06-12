@@ -5,28 +5,29 @@
 #include <stack>
 
 /**
- * @brief UndoStack хранит историю изменений в виде вектора списков задач.
+ * @brief Стек для отмены (Undo) операций над списком задач.
  */
 class UndoStack {
 public:
     /**
-     * @brief Сохраняет текущее состояние в стеке изменений.
-     * @param tasks копия вектора задач
+     * @brief Сохраняет текущее состояние в стеке.
+     * @param tasks Вектор задач на момент времени.
      */
     void pushState(const std::vector<Task>& tasks);
 
     /**
-     * @brief Отменяет последнее действие, возвращая предыдущий вектор задач.
-     * @return предыдущее состояние (стек «сдвинут»)
-     * @throws std::runtime_error, если стек пуст (некуда отменять)
+     * @brief Отменяет последнее действие.
+     * @return Предыдущее сохранённое состояние списка задач.
+     * @throws std::runtime_error Если нечего отменять.
      */
     std::vector<Task> undo();
 
     /**
-     * @brief Проверяет, есть ли куда откатываться
+     * @brief Проверяет, есть ли доступные для отмены состояния.
+     * @return true, если стек не пуст.
      */
     bool canUndo() const noexcept;
 
 private:
-    std::stack<std::vector<Task>> history_;
+    std::stack<std::vector<Task>> history_; ///< История состояний списка задач.
 };

@@ -15,7 +15,7 @@ TEST(CLIParserTest, ParseAdd) {
 
 TEST(CLIParserTest, ParseRemove) {
     const char* argv[] = {"prog", "remove", "123", "--data-file=my.json"};
-    int argc = 3;
+    int argc = 4;
     auto opts = CLIParser::parse(argc, const_cast<char**>(argv));
     EXPECT_EQ(opts.command, "remove");
     EXPECT_EQ(opts.args.at("id"), "123");

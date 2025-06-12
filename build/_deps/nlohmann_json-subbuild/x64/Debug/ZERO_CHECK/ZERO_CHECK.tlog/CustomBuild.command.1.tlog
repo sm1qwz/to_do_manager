@@ -1,0 +1,10 @@
+^C:\TO_DO_MANAGER\BUILD\_DEPS\NLOHMANN_JSON-SUBBUILD\CMAKEFILES\953BA1B187FE97E17B75F828A6053B1F\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/to_do_manager/build/_deps/nlohmann_json-subbuild -BC:/to_do_manager/build/_deps/nlohmann_json-subbuild --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/to_do_manager/build/_deps/nlohmann_json-subbuild/nlohmann_json-populate.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

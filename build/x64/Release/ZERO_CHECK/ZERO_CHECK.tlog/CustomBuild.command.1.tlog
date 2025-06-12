@@ -1,0 +1,10 @@
+^C:\TO_DO_MANAGER\BUILD\CMAKEFILES\42026A714F1231A0525E2F8592B79B82\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/to_do_manager -BC:/to_do_manager/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/to_do_manager/build/ToDoManager.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

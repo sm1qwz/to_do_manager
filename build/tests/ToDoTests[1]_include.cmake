@@ -1,0 +1,5 @@
+if(EXISTS "C:/to_do_manager/build/tests/ToDoTests[1]_tests.cmake")
+  include("C:/to_do_manager/build/tests/ToDoTests[1]_tests.cmake")
+else()
+  add_test(ToDoTests_NOT_BUILT ToDoTests_NOT_BUILT)
+endif()

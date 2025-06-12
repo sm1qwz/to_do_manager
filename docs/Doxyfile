@@ -1,0 +1,14 @@
+PROJECT_NAME           = ToDoManager
+OUTPUT_DIRECTORY       = ./output
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+INPUT                  = ../src
+FILE_PATTERNS          = *.hpp *.cpp
+RECURSIVE              = NO
+EXTRACT_ALL            = NO
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = NO
+EXTRACT_LOCAL_CLASSES  = YES
+QUIET                  = NO
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES

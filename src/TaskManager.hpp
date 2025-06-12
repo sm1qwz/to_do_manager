@@ -6,96 +6,108 @@
 #include <string>
 
 /**
- * @brief Менеджер задач: хранит в памяти вектор Task, предоставляет операции добавления, удаления, пометки как выполненной, фильтрации и т. д.
+ * @brief Менеджер задач: хранит и управляет списком Task.
  */
 class TaskManager {
 public:
-    TaskManager() = default;
-
     /**
-     * @brief Добавляет задачу с описанием и опциональной датой дедлайна и тегами.
-     * @param description текст описания
-     * @param dueDate дата дедлайна (опционально)
-     * @param tags список тегов (опционально)
-     * @return id только что созданной задачи
+     * @brief Добавляет новую задачу.
+     * @param description Описание задачи.
+     * @param dueDate     Дата дедлайна (опционально).
+     * @param tags        Список тегов (опционально).
+     * @return Сгенерированный уникальный идентификатор задачи.
      */
     int addTask(const std::string& description,
                 const std::optional<std::string>& dueDate = std::nullopt,
                 const std::vector<std::string>& tags = {});
 
     /**
-     * @brief Удаляет задачу по id. Если задача не найдена — выбрасывает исключение.
-     * @param id уникальный идентификатор задачи
+     * @brief Удаляет задачу по ID.
+     * @param id Идентификатор задачи.
+     * @throws std::runtime_error Если задача с таким ID не найдена.
      */
     void removeTask(int id);
 
     /**
-     * @brief Отмечает задачу как выполненную. Если id неверен — выбрасывает исключение.
-     * @param id уникальный идентификатор задачи
+     * @brief Помечает задачу как выполненную.
+     * @param id ID задачи.
+     * @throws std::runtime_error Если задача не найдена.
      */
     void markDone(int id);
 
     /**
-     * @brief Поиск задач по статусу (все, выполненные или активные).
-     * @param showDone true = вернуть только выполненные, false = только активные. Если nullopt — вернуть все.
+     * @brief Возвращает список задач по фильтру.
+     * @param showDone Если true — только выполненные; false — только активные; nullopt — все.
+     * @return Вектор задач, соответствующих фильтру.
      */
     std::vector<Task> listTasks(const std::optional<bool>& showDone = std::nullopt) const;
 
     /**
-     * @brief Поиск по подстроке в описании (регистр-нечувствительный).
-     * @param substr подстрока поиска
-     * @return вектор задач, в описании которых встречается substr
+     * @brief Ищет задачи по подстроке в описании (регистр-независимо).
+     * @param substr Подстрока для поиска.
+     * @return Вектор задач, в описании которых встречается substr.
      */
     std::vector<Task> searchByDescription(const std::string& substr) const;
 
     /**
-     * @brief Обновляет дату дедлайна для задачи по id.
-     * @param id уникальный идентификатор задачи
-     * @param newDueDate новая дата дедлайна (формат YYYY-MM-DD)
+     * @brief Обновляет дедлайн существующей задачи.
+     * @param id        Идентификатор задачи.
+     * @param newDueDate Новая дата дедлайна (YYYY-MM-DD).
+     * @throws std::runtime_error Если задача не найдена.
      */
     void updateDueDate(int id, const std::string& newDueDate);
 
     /**
-     * @brief Добавляет тег задаче (если ещё нет).
-     * @param id идентификатор задачи
-     * @param tag тег для добавления
+     * @brief Добавляет тег к задаче.
+     * @param id  Идентификатор задачи.
+     * @param tag Метка для добавления.
+     * @throws std::runtime_error Если задача не найдена.
      */
     void addTag(int id, const std::string& tag);
 
     /**
-     * @brief Удаляет тег у задачи (если он там есть).
-     * @param id идентификатор задачи
-     * @param tag тег для удаления
+     * @brief Удаляет тег у задачи.
+     * @param id  Идентификатор задачи.
+     * @param tag Метка для удаления.
+     * @throws std::runtime_error Если задача не найдена.
      */
     void removeTag(int id, const std::string& tag);
 
     /**
-     * @brief Экспортирует все задачи в файл (JSON или CSV).
-     * @param format "json" или "csv"
-     * @param outPath путь к выходному файлу
+     * @brief Экспортирует все задачи в файл.
+     * @param format  \"json\" или \"csv\".
+     * @param outPath Путь к выходному файлу.
+     * @throws std::invalid_argument Если указан неподдерживаемый формат.
+     * @throws std::runtime_error При ошибках записи.
      */
     void exportAll(const std::string& format, const std::string& outPath) const;
 
     /**
-     * @brief Возвращает ссылку на внутренний вектор задач (для сереализации/Undo).
+     * @brief Возвращает внутренний вектор задач.
+     * @return const ссылка на вектор Task.
      */
     const std::vector<Task>& getAllTasks() const noexcept;
-    
+
     /**
-     * @brief Заменяет весь вектор задач (например, для Undo или после загрузки из Storage).
+     * @brief Заменяет весь список задач (для Undo или после загрузки).
+     * @param tasks Новый вектор задач.
      */
     void setAllTasks(const std::vector<Task>& tasks);
 
 private:
-    std::vector<Task> tasks_;
+    std::vector<Task> tasks_;  ///< Вектор всех задач.
 
     /**
-     * @brief Находит индекс задачи в векторе по id. Если не найдено — возвращает -1.
+     * @brief Ищет индекс задачи в векторе по ID.
+     * @param id ID задачи.
+     * @return Индекс в векторе или -1, если не найден.
      */
     int findIndexById(int id) const noexcept;
 
     /**
-     * @brief Вспомогательная функция для валидации id (выкидывает исключение std::runtime_error, если не найден).
+     * @brief Проверяет существование задачи по ID.
+     * @param id ID задачи.
+     * @throws std::runtime_error Если задача не найдена.
      */
     void ensureExists(int id) const;
 };

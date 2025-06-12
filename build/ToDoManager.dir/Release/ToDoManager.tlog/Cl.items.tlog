@@ -1,0 +1,7 @@
+C:\to_do_manager\src\main.cpp;C:\to_do_manager\build\ToDoManager.dir\Release\main.obj
+C:\to_do_manager\src\Task.cpp;C:\to_do_manager\build\ToDoManager.dir\Release\Task.obj
+C:\to_do_manager\src\TaskManager.cpp;C:\to_do_manager\build\ToDoManager.dir\Release\TaskManager.obj
+C:\to_do_manager\src\Storage.cpp;C:\to_do_manager\build\ToDoManager.dir\Release\Storage.obj
+C:\to_do_manager\src\CLIParser.cpp;C:\to_do_manager\build\ToDoManager.dir\Release\CLIParser.obj
+C:\to_do_manager\src\Logger.cpp;C:\to_do_manager\build\ToDoManager.dir\Release\Logger.obj
+C:\to_do_manager\src\UndoStack.cpp;C:\to_do_manager\build\ToDoManager.dir\Release\UndoStack.obj

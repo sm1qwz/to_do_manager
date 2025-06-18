@@ -1,1 +1,12 @@
-[]
+[
+    {
+        "description": "Xleb",
+        "done": false,
+        "dueDate": "2025-06-10",
+        "id": 1,
+        "tags": [
+            "food",
+            "home"
+        ]
+    }
+]

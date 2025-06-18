@@ -2,3 +2,4 @@
 [2025-06-12T10:54:21] DONE id=1
 [2025-06-12T10:56:31] REMOVE id=1
 [2025-06-12T10:59:21] EXPORT format=csv out=tasks.csv
+[2025-06-18T16:19:44] ADD id=1 description="Xleb" due=2025-06-10 tags=[food,home]
